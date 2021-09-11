@@ -20,13 +20,22 @@ export default {
     data(){
         return{
             movies: [],
+            baseUri: "https://api.themoviedb.org/3",
+            api_key: "c61c8b4a821d0c1fb04b9ed1012bea69",
+            query: "il+signore+degli+anelli",
+            
         }
     },
+    method: {
+        
+    },
     created(){
-    axios.get('https://api.themoviedb.org/3/search/movie?api_key=c61c8b4a821d0c1fb04b9ed1012bea69&query=ritorno+al+futuro').then((res)=> {
-        this.movies = res.data.results;
-        }
+            axios.get(`${this.baseUri}/search/movie?api_key=${this.api_key}&query=${this.query}`).then((res)=> {
+            this.movies = res.data.results;
+            console.log(this.movies)
+            }
     )}
+    
         
 }
 </script>

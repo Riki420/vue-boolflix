@@ -9,8 +9,19 @@
                       </div>
                       <div class="col">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Cerca..." aria-label="Cerca..." aria-describedby="button-addon2">
-                                <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
+                                <input 
+                                type="text" 
+                                class="form-control" 
+                                placeholder="Cerca..."  
+                                v-model="searchMovie">
+                                <button 
+                                class="btn btn-outline-secondary" 
+                                type="button" 
+                                id="button-addon2" 
+                                @click="$emit('findFilm', searchMovie)"
+                                @keyup.enter="'findFilm'">
+                                    <i class="bi bi-search"></i>
+                                </button>
                             </div>
                       </div>
                   </div>
@@ -22,7 +33,12 @@
 
 <script>
 export default {
-    name: "Header"
+    name: "Header",
+    data(){
+        return{
+            searchMovie: ""
+        }
+    }
 }
 </script>
 

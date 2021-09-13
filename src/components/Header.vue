@@ -13,13 +13,13 @@
                                 type="text" 
                                 class="form-control" 
                                 placeholder="Cerca..."  
-                                v-model="searchMovie">
+                                v-model.trim="searchMovie"
+                                @keyup.enter="emitSearch">
                                 <button 
                                 class="btn btn-outline-secondary" 
                                 type="button" 
                                 id="button-addon2" 
-                                @click="$emit('findFilm', searchMovie)"
-                                @keyup.enter="'findFilm'">
+                                @click="emitSearch">
                                     <i class="bi bi-search"></i>
                                 </button>
                             </div>
@@ -37,6 +37,11 @@ export default {
     data(){
         return{
             searchMovie: ""
+        }
+    },
+    methods: {
+        emitSearch(){
+            this.$emit('findFilm', this.searchMovie)
         }
     }
 }

@@ -1,5 +1,6 @@
 <template>
-  <div class="col text-white mt-4">
+<div>
+    <div class="col text-white mt-4">
       <div class="card my-s-height bg-dark text-center text-white pointer">
             <div class="card-body">
                 <h3>{{ movie.title }}</h3>
@@ -11,13 +12,19 @@
             </div>
       </div>
   </div>
+</div>
+  
 </template>
 
 <script>
 export default {
     name: "Moviecard",
     props: ["movie"],
-
+    data(){
+        return{
+            lang: ['en', 'it']
+        }
+    },
     method:{
         
     }

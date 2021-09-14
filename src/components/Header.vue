@@ -3,11 +3,11 @@
       <div class="row">
           <div class="col">
               <div class="container">
-                  <div class="row text-red py-4">
-                      <div class="col">
+                  <div class="row text-red py-2">
+                      <div class="col mt-2">
                           <h2>Boolflix</h2>
                       </div>
-                      <div class="col">
+                      <div class="col mt-2">
                             <div class="input-group mb-3">
                                 <input 
                                 type="text" 

@@ -7,7 +7,10 @@
                 <ul>
                     <li>Voto: {{ movie.vote_average }}</li>
                     <li>Titolo Originale: {{ movie.original_title }}</li>
-                    <li>Lingua Originale: {{ movie.original_language }}</li>
+                    <li>
+                        <img v-if="flags.includes(movie.original_language)" :src="getFlag" alt="movie.original_language" class="img-fluid w-25">
+                        <span v-else>{{ movie.original_language }}</span>
+                    </li>
                 </ul>
             </div>
       </div>
@@ -22,11 +25,13 @@ export default {
     props: ["movie"],
     data(){
         return{
-            lang: ['en', 'it']
+            flags: ["en", "it"],
         }
     },
-    method:{
-        
+    computed:{
+        getFlag(){
+            return require(`@/assets/images/${this.movie.original_language}.png`)
+        } 
     }
 }
 </script>

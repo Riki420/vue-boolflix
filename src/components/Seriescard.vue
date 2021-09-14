@@ -6,7 +6,10 @@
                 <ul>
                     <li>Voto: {{ serie.vote_average }}</li>
                     <li>Titolo Originale: {{ serie.original_name }}</li>
-                    <li>Lingua Originale: {{ serie.original_language }}</li>
+                    <li>
+                        <img v-if="flags.includes(serie.original_language)" :src="getFlag" alt="movie.original_language" class="img-fluid w-25">
+                        <span v-else>{{ serie.original_language }}</span>
+                    </li>
                 </ul>
             </div>
       </div>
@@ -15,7 +18,18 @@
 
 <script>
 export default {
-    props: ['serie']
+    props: ['serie'],
+    data(){
+        return{
+            flags: ["en", "it"],
+            imgUri: 'https://image.tmdb.org/t/p/w500'
+        }
+    },
+    computed:{
+        getFlag(){
+            return require(`@/assets/images/${this.serie.original_language}.png`)
+        }
+    }
 }
 </script>
 

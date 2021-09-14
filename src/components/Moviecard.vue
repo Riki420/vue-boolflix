@@ -2,6 +2,7 @@
 <div>
     <div class="col text-white mt-4">
       <div class="card my-s-height bg-dark text-center text-white pointer">
+          <img :src="getImage" :alt="movie.title" class="img-fluid">
             <div class="card-body">
                 <h3>{{ movie.title }}</h3>
                 <ul>
@@ -20,18 +21,25 @@
 </template>
 
 <script>
+
 export default {
     name: "Moviecard",
     props: ["movie"],
     data(){
         return{
             flags: ["en", "it"],
+            imgUrl: 'https://image.tmdb.org/t/p/w500'
         }
     },
     computed:{
+        //Recupero l'immagine della lingua
         getFlag(){
             return require(`@/assets/images/${this.movie.original_language}.png`)
-        } 
+        },
+        //Recupero l'immagine del film
+        getImage(){
+            return this.imgUrl + this.movie.poster_path;    
+        }
     }
 }
 </script>

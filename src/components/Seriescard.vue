@@ -1,6 +1,7 @@
 <template>
   <div class="col text-white mt-4">
       <div class="card my-s-height bg-dark text-center text-white pointer">
+          <img :src="getImage" :alt="serie.name" class="img-fluid">
             <div class="card-body">
                 <h3>{{ serie.name }}</h3>
                 <ul>
@@ -22,12 +23,17 @@ export default {
     data(){
         return{
             flags: ["en", "it"],
-            imgUri: 'https://image.tmdb.org/t/p/w500'
+            imgUrl: 'https://image.tmdb.org/t/p/w500'
         }
     },
     computed:{
+        //Recupero l'immagine della lingua
         getFlag(){
             return require(`@/assets/images/${this.serie.original_language}.png`)
+        },
+        //Recupero l'immagine della serie tv
+        getImage(){
+            return this.imgUrl + this.serie.poster_path;    
         }
     }
 }

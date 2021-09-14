@@ -1,10 +1,10 @@
 <template>
   <div class="col text-white mt-4">
-      <div class="card my-s-height bg-dark text-center text-white pointer p-4">
+      <div class="card bg-dark text-white pointer p-4">
           <img 
           :src="getImage" 
           :alt="serie.name" 
-          class="img-fluid">
+          class="img-fluid poster">
             <div class="card-body">
                 <h3>{{ serie.name }}</h3>
                 <ul>
@@ -18,7 +18,15 @@
                         class="img-fluid w-25">
                         <span v-else>{{ serie.original_language }}</span>
                     </li>
+                    <li>
+                        <i 
+                        v-for="n in 5" 
+                        :key="n" 
+                        :class="n <= vote ? 'bi-star' : 'bi-star-fill'" 
+                        class="bi"></i>
+                    </li>
                 </ul>
+                <p>{{serie.overview}}</p>
             </div>
       </div>
   </div>
@@ -41,11 +49,29 @@ export default {
         //Recupero l'immagine della serie tv
         getImage(){
             return this.imgUrl + this.serie.poster_path;    
+        },
+        //Math Ceil sul voto per arrotondare per eccesso, dimezzandolo per 2
+        vote(){
+            return Math.ceil(this.serie.vote_average / 2);
         }
     }
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.card-body{
+    display: none;
+    overflow-y: auto;
+    ul {
+    list-style-type: none;
+    }
+}
+.card:hover .card-body{
+    display: block;
+    height: 400px;
+    
+}
+.card:hover .poster{
+    display: none;
+}
 </style>
